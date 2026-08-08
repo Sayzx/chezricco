@@ -25,7 +25,14 @@ export default function Hours() {
               <span className="font-display tracking-wide text-mustard-light">
                 📍 Adresse —
               </span>{" "}
-              Saint-Hippolyte
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=6+rue+des+Petits+Commer%C3%A7ants+66510+Saint-Hippolyte"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                6 rue des Petits Commerçants, 66510 Saint-Hippolyte
+              </a>
             </p>
             <p>
               <span className="font-display tracking-wide text-mustard-light">

@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --raw-cream: #fbf1de;
+  --raw-cream-dim: #f3e6c8;
+  --raw-red: #c3121a;
+  --raw-red-dark: #7d0d13;
+  --raw-black: #1c1410;
+  --raw-mustard: #f0a300;
+  --raw-mustard-light: #ffce54;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--raw-cream);
+  --color-cream-dim: var(--raw-cream-dim);
+  --color-red: var(--raw-red);
+  --color-red-dark: var(--raw-red-dark);
+  --color-black: var(--raw-black);
+  --color-mustard: var(--raw-mustard);
+  --color-mustard-light: var(--raw-mustard-light);
+  --font-display: var(--font-display-raw);
+  --font-script: var(--font-script-raw);
+  --font-body: var(--font-body-raw);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-black);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-black);
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Diagonal red/cream stripe band, like the awning canvas */
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-red),
+    var(--color-red) 22px,
+    var(--color-cream) 22px,
+    var(--color-cream) 44px
+  );
+}
+
+.bg-stripes-tight {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-black),
+    var(--color-black) 10px,
+    var(--color-mustard) 10px,
+    var(--color-mustard) 20px
+  );
+}
+
+/* Checkerboard floor, lifted from the storefront photo */
+.bg-checker {
+  background-image: conic-gradient(
+    var(--color-black) 90deg,
+    var(--color-cream) 90deg 180deg,
+    var(--color-black) 180deg 270deg,
+    var(--color-cream) 270deg
+  );
+  background-size: 40px 40px;
+}
+
+/* Paper grain overlay for the poster feel */
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.text-outline {
+  -webkit-text-stroke: 2px var(--color-black);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.badge-stamp {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
 }

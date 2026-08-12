@@ -31,6 +31,10 @@ export default function Footer() {
           <a href="/mentions-legales" className="underline hover:text-mustard transition-colors">
             Mentions Légales & Confidentialité
           </a>
+          <span>•</span>
+          <a href="/admin" className="underline hover:text-mustard transition-colors">
+            🔐 Espace Admin / Cuisine
+          </a>
         </div>
       </div>
     </footer>

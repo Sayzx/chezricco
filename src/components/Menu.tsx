@@ -52,7 +52,12 @@ function TicketCard({
   );
 }
 
-export default function Menu() {
+interface MenuProps {
+  onOpenTacosBuilder?: () => void;
+  onAddToCart?: (name: string, price: number, details?: string) => void;
+}
+
+export default function Menu({ onOpenTacosBuilder, onAddToCart }: MenuProps) {
   const [tab, setTab] = useState<TabId>("pizza");
   const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -88,23 +93,31 @@ export default function Menu() {
             <a href="tel:0469361985" className="text-mustard underline font-bold">
               04 69 36 19 85
             </a>{" "}
-            pour commander !
+            ou commandez directement en ligne ci-dessous !
           </p>
         </div>
 
-        {/* Action button to view real physical menu cards */}
+        {/* Action button to view real physical menu cards & Tacos Builder */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          {onOpenTacosBuilder && (
+            <button
+              onClick={onOpenTacosBuilder}
+              className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard px-5 py-2.5 font-display text-xs text-black font-bold shadow-[3px_3px_0_#1c1410] hover:scale-105 transition-all"
+            >
+              🌮 Composer ton Tacos Sur-Mesure
+            </button>
+          )}
           <button
             onClick={() => openPhotoMenu("pizzas")}
             className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
           >
-            📸 Voir le menu pizza original en photo
+            📸 Voir la carte pizza en photo
           </button>
           <button
             onClick={() => openPhotoMenu("sandwiches")}
             className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
           >
-            📸 Voir le menu sandwichs original en photo
+            📸 Voir la carte sandwichs en photo
           </button>
         </div>
 
@@ -114,7 +127,7 @@ export default function Menu() {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Rechercher une pizza, un produit ou un ingrédient (ex: chèvre, saumon, frites...)"
+                placeholder="Rechercher une pizza, un produit ou un ingrédient..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full rounded-full border-2 border-mustard bg-cream px-5 py-3 pr-10 text-sm font-body text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-mustard"
@@ -175,6 +188,27 @@ export default function Menu() {
 
           {tab === "sandwich" && (
             <div className="space-y-8">
+              {/* TACOS BUILDER FEATURE CARD BANNER */}
+              {onOpenTacosBuilder && (
+                <div className="rounded-2xl border-4 border-black bg-mustard p-5 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <span className="font-display text-xs text-red uppercase tracking-widest block font-bold">
+                      ⭐ COMPOSITEUR INTERACTIF ⭐
+                    </span>
+                    <h3 className="font-script text-3xl text-black">Compose ton Tacos Sur-Mesure !</h3>
+                    <p className="text-xs font-body text-black/80">
+                      Choisis ta taille (Simple, Double, XL), tes viandes préférées, ta sauce fromagère maison et tes suppléments.
+                    </p>
+                  </div>
+                  <button
+                    onClick={onOpenTacosBuilder}
+                    className="shrink-0 rounded-xl border-2 border-black bg-red px-5 py-3 font-display text-sm text-cream shadow-[3px_3px_0_#1c1410] hover:bg-red-dark transition-all"
+                  >
+                    🌮 Composer Maintenant
+                  </button>
+                </div>
+              )}
+
               {/* Paninis section */}
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-2">

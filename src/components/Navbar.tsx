@@ -11,7 +11,13 @@ const links = [
   { href: "#infos", label: "Infos & horaires" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  cartCount?: number;
+  onOpenCart?: () => void;
+  onOpenTacosBuilder?: () => void;
+}
+
+export default function Navbar({ cartCount = 0, onOpenCart, onOpenTacosBuilder }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -40,7 +46,7 @@ export default function Navbar() {
           <OpenStatus className="bg-white/80" />
         </div>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
@@ -52,22 +58,48 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="tel:0469361985"
-          className="hidden md:inline-flex items-center gap-2 rounded-md bg-red px-4 py-2 font-display text-sm tracking-wide text-cream shadow-[3px_3px_0_#1c1410] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1c1410] transition-all"
-        >
-          <span>📞</span> 04 69 36 19 85
-        </a>
+        <div className="flex items-center gap-3">
+          {onOpenTacosBuilder && (
+            <button
+              onClick={onOpenTacosBuilder}
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-md border-2 border-black bg-mustard px-3 py-1.5 font-display text-xs text-black shadow-[2px_2px_0_#1c1410] hover:bg-mustard-light transition-all"
+            >
+              <span>🌮</span> Composer Tacos
+            </button>
+          )}
 
-        <button
-          aria-label="Menu"
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded border-2 border-black md:hidden"
-        >
-          <span className="h-0.5 w-6 bg-black" />
-          <span className="h-0.5 w-6 bg-black" />
-          <span className="h-0.5 w-6 bg-black" />
-        </button>
+          {onOpenCart && (
+            <button
+              onClick={onOpenCart}
+              className="relative inline-flex items-center gap-1.5 rounded-md border-2 border-black bg-white px-3 py-1.5 font-display text-xs text-black shadow-[2px_2px_0_#1c1410] hover:bg-cream-dim transition-all"
+            >
+              <span>🛒</span>
+              <span className="hidden sm:inline">Panier</span>
+              {cartCount > 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red font-bold text-[10px] text-white">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          )}
+
+          <a
+            href="tel:0469361985"
+            className="hidden md:inline-flex items-center gap-2 rounded-md bg-red px-3.5 py-1.5 font-display text-xs tracking-wide text-cream shadow-[2px_2px_0_#1c1410] hover:bg-red-dark transition-all"
+          >
+            <span>📞</span> 04 69 36 19 85
+          </a>
+
+          <button
+            aria-label="Menu"
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded border-2 border-black md:hidden"
+          >
+            <span className="h-0.5 w-6 bg-black" />
+            <span className="h-0.5 w-6 bg-black" />
+            <span className="h-0.5 w-6 bg-black" />
+          </button>
+        </div>
       </div>
 
       {open && (

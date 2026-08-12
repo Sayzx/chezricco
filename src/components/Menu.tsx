@@ -83,29 +83,13 @@ export default function Menu() {
           <h2 className="mt-2 font-script text-5xl text-mustard-light">
             Qu&apos;est-ce qu&apos;on vous sert ?
           </h2>
-          <p className="mt-2 max-w-lg font-body text-sm text-cream/70">
+          <p className="mt-6 max-w-lg font-body text-sm text-cream/80 leading-relaxed">
             Tous nos produits sont préparés minute sur place. Appelez-nous au{" "}
             <a href="tel:0469361985" className="text-mustard underline font-bold">
               04 69 36 19 85
             </a>{" "}
             pour commander !
           </p>
-        </div>
-
-        {/* Action button to view real physical menu cards */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <button
-            onClick={() => openPhotoMenu("pizzas")}
-            className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
-          >
-            📸 Voir le menu pizza original en photo
-          </button>
-          <button
-            onClick={() => openPhotoMenu("sandwiches")}
-            className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
-          >
-            📸 Voir le menu sandwichs original en photo
-          </button>
         </div>
 
         {/* Search bar & Category Tabs */}

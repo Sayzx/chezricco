@@ -36,10 +36,6 @@ export default function Navbar() {
           </div>
         </a>
 
-        <div className="hidden lg:block">
-          <OpenStatus className="bg-white/80" />
-        </div>
-
         <nav className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <a
@@ -52,12 +48,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="tel:0469361985"
-          className="hidden md:inline-flex items-center gap-2 rounded-md bg-red px-4 py-2 font-display text-sm tracking-wide text-cream shadow-[3px_3px_0_#1c1410] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1c1410] transition-all"
-        >
-          <span>📞</span> 04 69 36 19 85
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <OpenStatus />
+          <a
+            href="tel:0469361985"
+            className="inline-flex items-center gap-2 rounded-md bg-red px-4 py-2 font-display text-sm tracking-wide text-cream shadow-[3px_3px_0_#1c1410] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1c1410] transition-all"
+          >
+            <span>📞</span> 04 69 36 19 85
+          </a>
+        </div>
 
         <button
           aria-label="Menu"

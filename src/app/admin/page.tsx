@@ -284,7 +284,7 @@ export default function AdminPage() {
                           Commande #{order.orderNumber}
                         </span>
                         <span className="block text-[11px] font-body text-black/60">
-                          {new Date(order.createdAt).toLocaleTimeString([], { hour: "22h", minute: "2-digit" })}
+                          {new Date(order.createdAt).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
                         </span>
                       </div>
                       <span

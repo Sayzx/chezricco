@@ -25,9 +25,13 @@ export default function Footer() {
         >
           📞 04 69 36 19 85
         </a>
-        <p className="mt-6 font-body text-xs text-cream/40">
-          © {new Date().getFullYear()} Chez Ricco. Tous droits réservés.
-        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-body text-cream/50">
+          <span>© {new Date().getFullYear()} Chez Ricco. Tous droits réservés.</span>
+          <span>•</span>
+          <a href="/mentions-legales" className="underline hover:text-mustard transition-colors">
+            Mentions Légales & Confidentialité
+          </a>
+        </div>
       </div>
     </footer>
   );

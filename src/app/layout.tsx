@@ -104,6 +104,9 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
+  verification: {
+    google: "K02q2p-cKWm9BrYCczBcxUGJsPBxeNd2tD9HSzK9ZOQ",
+  },
   other: {
     "geo.region": "FR-66",
     "geo.placename": "Saint-Hippolyte",
@@ -192,6 +195,7 @@ export default function RootLayout({
       className={`${anton.variable} ${pacifico.variable} ${workSans.variable}`}
     >
       <head>
+        <meta name="google-site-verification" content="K02q2p-cKWm9BrYCczBcxUGJsPBxeNd2tD9HSzK9ZOQ" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

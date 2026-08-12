@@ -17,22 +17,20 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b-4 border-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <a href="#top" className="flex items-center gap-3 group" title="Chez Ricco - Snack & Point Chaud Saint-Hippolyte">
-          <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-black ring-2 ring-mustard/80 bg-white shadow-md group-hover:scale-105 group-hover:ring-mustard transition-all duration-300">
+        <a href="#top" className="flex items-center gap-3 group">
+          <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-black bg-white shadow-sm group-hover:scale-105 transition-transform">
             <Image
               src="/images/logo-square.jpg"
-              alt="Chez Ricco — Snack & Point Chaud à Saint-Hippolyte (66510)"
+              alt="Chez Ricco"
               fill
-              priority
-              sizes="48px"
-              className="object-cover object-center"
+              className="object-cover"
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-script text-2xl text-red leading-none group-hover:text-red-dark transition-colors drop-shadow-sm">
+            <span className="font-script text-2xl text-red leading-none group-hover:text-red-dark transition-colors">
               Chez Ricco
             </span>
-            <span className="text-[10px] font-display tracking-widest text-black/70 uppercase font-semibold">
+            <span className="text-[10px] font-display tracking-widest text-black/60 uppercase">
               Snack · Saint-Hippolyte
             </span>
           </div>

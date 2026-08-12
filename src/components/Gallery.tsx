@@ -39,8 +39,6 @@ export default function Gallery() {
               src={p.src}
               alt={p.alt}
               fill
-              unoptimized
-              priority
               sizes="(min-width: 768px) 33vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />

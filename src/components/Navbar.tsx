@@ -23,6 +23,7 @@ export default function Navbar() {
               src="/images/logo-square.jpg"
               alt="Chez Ricco"
               fill
+              sizes="48px"
               className="object-cover"
             />
           </div>

@@ -9,12 +9,13 @@ import {
   petitsPlaisirs,
   menuEnfant,
 } from "@/data/menu";
+import MenuModal from "./MenuModal";
 
 const tabs = [
-  { id: "pizza", label: "Pizzas" },
-  { id: "sandwich", label: "Sandwichs & Tacos" },
-  { id: "chaud", label: "Point Chaud" },
-  { id: "plaisirs", label: "Petits plaisirs" },
+  { id: "pizza", label: "🍕 Pizzas" },
+  { id: "sandwich", label: "🥖 Sandwichs & Tacos" },
+  { id: "chaud", label: "🥐 Point Chaud" },
+  { id: "plaisirs", label: "🍟 Petits plaisirs" },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -23,124 +24,254 @@ function TicketCard({
   name,
   desc,
   price,
+  isMatch = true,
 }: {
   name: string;
   desc?: string;
   price: string;
+  isMatch?: boolean;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b-2 border-dashed border-black/30 py-3">
+    <div
+      className={`flex items-start justify-between gap-4 border-b-2 border-dashed border-black/30 py-3 transition-all ${
+        isMatch ? "opacity-100" : "opacity-30"
+      }`}
+    >
       <div>
-        <p className="font-display text-base tracking-wide text-black">
-          {name}
+        <p className="font-display text-base tracking-wide text-black flex items-center gap-2">
+          <span>{name}</span>
         </p>
-        {desc && <p className="mt-0.5 text-sm text-black/60">{desc}</p>}
+        {desc && <p className="mt-0.5 text-sm text-black/70 leading-snug">{desc}</p>}
       </div>
-      {price && (
-        <p className="shrink-0 font-display text-lg text-red">{price}</p>
-      )}
+      {Boolean(price) ? (
+        <span className="shrink-0 rounded-md bg-red/10 px-2.5 py-1 font-display text-base text-red font-bold">
+          {price}
+        </span>
+      ) : null}
     </div>
   );
 }
 
 export default function Menu() {
   const [tab, setTab] = useState<TabId>("pizza");
+  const [search, setSearch] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalInitialTab, setModalInitialTab] = useState<"pizzas" | "sandwiches">("pizzas");
+
+  const query = search.trim().toLowerCase();
+
+  const isMatching = (name: string, desc?: string): boolean => {
+    if (!query) return true;
+    return (
+      name.toLowerCase().includes(query) ||
+      Boolean(desc && desc.toLowerCase().includes(query))
+    );
+  };
+
+  const openPhotoMenu = (initial: "pizzas" | "sandwiches") => {
+    setModalInitialTab(initial);
+    setModalOpen(true);
+  };
 
   return (
     <section id="carte" className="bg-black py-16 text-cream">
       <div className="mx-auto max-w-5xl px-5">
-        <p className="text-center font-display text-sm tracking-[0.2em] text-mustard">
-          LA CARTE
-        </p>
-        <h2 className="mt-2 text-center font-script text-5xl text-mustard-light">
-          Qu&apos;est-ce qu&apos;on vous sert ?
-        </h2>
-
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          {tabs.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`rounded-full border-2 px-5 py-2 font-display text-sm tracking-wide transition-colors ${
-                tab === t.id
-                  ? "border-mustard bg-mustard text-black"
-                  : "border-cream/40 text-cream/80 hover:border-mustard hover:text-mustard"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+        <div className="flex flex-col items-center text-center">
+          <p className="font-display text-sm tracking-[0.2em] text-mustard uppercase">
+            LA CARTE CHEZ RICCO
+          </p>
+          <h2 className="mt-2 font-script text-5xl text-mustard-light">
+            Qu&apos;est-ce qu&apos;on vous sert ?
+          </h2>
+          <p className="mt-2 max-w-lg font-body text-sm text-cream/70">
+            Tous nos produits sont préparés minute sur place. Appelez-nous au{" "}
+            <a href="tel:0469361985" className="text-mustard underline font-bold">
+              04 69 36 19 85
+            </a>{" "}
+            pour commander !
+          </p>
         </div>
 
+        {/* Action button to view real physical menu cards */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={() => openPhotoMenu("pizzas")}
+            className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
+          >
+            📸 Voir le menu pizza original en photo
+          </button>
+          <button
+            onClick={() => openPhotoMenu("sandwiches")}
+            className="inline-flex items-center gap-2 rounded-full border-2 border-mustard bg-mustard/20 px-4 py-2 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
+          >
+            📸 Voir le menu sandwichs original en photo
+          </button>
+        </div>
+
+        {/* Search bar & Category Tabs */}
+        <div className="mt-8 space-y-4">
+          <div className="mx-auto max-w-md">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Rechercher une pizza, un produit ou un ingrédient (ex: chèvre, saumon, frites...)"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full rounded-full border-2 border-mustard bg-cream px-5 py-3 pr-10 text-sm font-body text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-mustard"
+              />
+              {search ? (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 font-bold text-black/60 hover:text-black"
+                >
+                  ✕
+                </button>
+              ) : (
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-black/50">🔍</span>
+              )}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {tabs.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={`rounded-full border-2 px-5 py-2 font-display text-sm tracking-wide transition-all ${
+                  tab === t.id
+                    ? "border-mustard bg-mustard text-black font-bold shadow-[2px_2px_0_#ffce54]"
+                    : "border-cream/40 text-cream/80 hover:border-mustard hover:text-mustard"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Menu Board Container */}
         <div className="mt-10 rounded-xl border-4 border-mustard bg-cream p-5 text-black shadow-2xl sm:p-8">
           {tab === "pizza" && (
-            <div className="grid gap-x-8 sm:grid-cols-2">
-              {pizzas.map((p) => (
-                <TicketCard key={p.name} {...p} />
-              ))}
+            <div>
+              <div className="mb-4 flex items-center justify-between border-b-2 border-black pb-3">
+                <span className="font-display text-lg text-red uppercase">
+                  Pizzas au choix · 20 recettes
+                </span>
+                <span className="text-xs font-display bg-red/10 text-red px-3 py-1 rounded-full">
+                  De 9,90€ à 14,90€
+                </span>
+              </div>
+              <div className="grid gap-x-8 sm:grid-cols-2">
+                {pizzas.map((p) => (
+                  <TicketCard
+                    key={p.name}
+                    {...p}
+                    isMatch={isMatching(p.name, p.desc)}
+                  />
+                ))}
+              </div>
             </div>
           )}
 
           {tab === "sandwich" && (
             <div className="space-y-8">
+              {/* Paninis section */}
               <div>
-                <h3 className="font-display text-xl text-red">
-                  Paninis · 6,90€
-                </h3>
-                <p className="text-sm text-black/60">
-                  Formule 3,50€ : frites + boisson
-                </p>
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-2">
+                  <h3 className="font-display text-xl text-red">
+                    Paninis Chauds · 6,90€
+                  </h3>
+                  <span className="rounded-full bg-mustard px-3 py-1 font-display text-xs text-black border border-black font-bold">
+                    🍟 Formule +3,50€ (Frites + Boisson)
+                  </span>
+                </div>
                 <div className="mt-3 grid gap-x-8 sm:grid-cols-2">
                   {paninis.map((p) => (
-                    <TicketCard key={p.name} {...p} price="" />
+                    <TicketCard
+                      key={p.name}
+                      {...p}
+                      price="6,90€"
+                      isMatch={isMatching(p.name, p.desc)}
+                    />
                   ))}
                 </div>
               </div>
 
+              {/* Other sandwiches: Kebab, Américain, Tacos */}
               {otherSandwiches.map((group) => (
                 <div key={group.id}>
-                  <h3 className="font-display text-xl text-red">
-                    {group.title}
-                  </h3>
-                  {group.note && (
-                    <p className="text-sm text-black/60">{group.note}</p>
-                  )}
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-2">
+                    <h3 className="font-display text-xl text-red">{group.title}</h3>
+                    {group.note && (
+                      <span className="rounded-full bg-mustard/30 px-3 py-1 font-display text-xs text-black border border-black/40">
+                        {group.note}
+                      </span>
+                    )}
+                  </div>
                   <div className="mt-3 grid gap-x-8 sm:grid-cols-2">
                     {group.items.map((it) => (
-                      <TicketCard key={it.name} {...it} />
+                      <TicketCard
+                        key={it.name}
+                        {...it}
+                        isMatch={isMatching(it.name, it.desc)}
+                      />
                     ))}
                   </div>
                 </div>
               ))}
 
-              <div className="rounded-lg border-2 border-black bg-mustard-light/40 p-4">
-                <TicketCard {...menuEnfant} />
+              {/* Menu Enfant */}
+              <div className="rounded-lg border-2 border-black bg-mustard-light/50 p-4 shadow-md">
+                <TicketCard
+                  {...menuEnfant}
+                  isMatch={isMatching(menuEnfant.name, menuEnfant.desc)}
+                />
               </div>
             </div>
           )}
 
           {tab === "chaud" && (
             <div>
-              <p className="mb-4 text-center font-display text-sm tracking-wide text-black/60">
-                CUITS SUR PLACE PLUSIEURS FOIS PAR JOUR
+              <p className="mb-6 text-center font-display text-xs tracking-wider text-black/70 bg-mustard/20 py-2 rounded-md border border-black/20">
+                🥖 BAGUETTES TRADITION & VIENNOISERIES PUR BEURRE CUITES CHAUDES DÈS 7H00
               </p>
               <div className="grid gap-x-8 sm:grid-cols-2">
                 {pointChaud.map((p) => (
-                  <TicketCard key={p.name} {...p} />
+                  <TicketCard
+                    key={p.name}
+                    {...p}
+                    isMatch={isMatching(p.name, p.desc)}
+                  />
                 ))}
               </div>
             </div>
           )}
 
           {tab === "plaisirs" && (
-            <div className="grid gap-x-8 sm:grid-cols-2">
-              {petitsPlaisirs.map((p) => (
-                <TicketCard key={p.name} {...p} />
-              ))}
+            <div>
+              <div className="mb-4 border-b-2 border-black pb-2">
+                <h3 className="font-display text-xl text-red">Accompagnements & Snacks</h3>
+              </div>
+              <div className="grid gap-x-8 sm:grid-cols-2">
+                {petitsPlaisirs.map((p) => (
+                  <TicketCard
+                    key={p.name}
+                    {...p}
+                    isMatch={isMatching(p.name, p.desc)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Menu Modal */}
+      <MenuModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        initialTab={modalInitialTab}
+      />
     </section>
   );
 }

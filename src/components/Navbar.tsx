@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import OpenStatus from "./OpenStatus";
 
 const links = [
   { href: "#carte", label: "La carte" },
@@ -16,18 +17,30 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b-4 border-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <a href="#top" className="flex items-center gap-3">
-          <Image
-            src="/images/logo.jpg"
-            alt="Chez Ricco"
-            width={52}
-            height={52}
-            className="h-12 w-12 rounded-full border-2 border-black object-cover"
-          />
-          <span className="font-script text-2xl text-red leading-none">
-            Chez Ricco
-          </span>
+        <a href="#top" className="flex items-center gap-3 group" title="Chez Ricco - Snack & Point Chaud Saint-Hippolyte">
+          <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-black ring-2 ring-mustard/80 bg-white shadow-md group-hover:scale-105 group-hover:ring-mustard transition-all duration-300">
+            <Image
+              src="/images/logo-square.jpg"
+              alt="Chez Ricco — Snack & Point Chaud à Saint-Hippolyte (66510)"
+              fill
+              priority
+              sizes="48px"
+              className="object-cover object-center"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-script text-2xl text-red leading-none group-hover:text-red-dark transition-colors drop-shadow-sm">
+              Chez Ricco
+            </span>
+            <span className="text-[10px] font-display tracking-widest text-black/70 uppercase font-semibold">
+              Snack · Saint-Hippolyte
+            </span>
+          </div>
         </a>
+
+        <div className="hidden lg:block">
+          <OpenStatus className="bg-white/80" />
+        </div>
 
         <nav className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
@@ -43,9 +56,9 @@ export default function Navbar() {
 
         <a
           href="tel:0469361985"
-          className="hidden md:inline-block rounded-md bg-red px-4 py-2 font-display text-sm tracking-wide text-cream shadow-[3px_3px_0_#1c1410] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1c1410] transition-all"
+          className="hidden md:inline-flex items-center gap-2 rounded-md bg-red px-4 py-2 font-display text-sm tracking-wide text-cream shadow-[3px_3px_0_#1c1410] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1c1410] transition-all"
         >
-          04 69 36 19 85
+          <span>📞</span> 04 69 36 19 85
         </a>
 
         <button
@@ -61,24 +74,26 @@ export default function Navbar() {
 
       {open && (
         <nav className="flex flex-col gap-4 border-t-2 border-black bg-cream px-5 py-5 md:hidden">
+          <OpenStatus className="bg-white self-start" />
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="font-display text-lg text-black"
+              className="font-display text-lg text-black hover:text-red"
             >
               {l.label}
             </a>
           ))}
           <a
             href="tel:0469361985"
-            className="mt-2 inline-block w-fit rounded-md bg-red px-4 py-2 font-display text-sm text-cream"
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-red px-4 py-3 font-display text-base text-cream shadow-[3px_3px_0_#1c1410]"
           >
-            Appeler · 04 69 36 19 85
+            📞 Appeler · 04 69 36 19 85
           </a>
         </nav>
       )}
     </header>
   );
 }
+

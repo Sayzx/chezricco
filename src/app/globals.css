@@ -112,5 +112,27 @@ body {
 }
 
 .badge-stamp {
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
 }
+
+.logo-ring-glow {
+  box-shadow: 0 0 20px rgba(240, 163, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.logo-ring-glow:hover {
+  box-shadow: 0 0 28px rgba(255, 206, 84, 0.7), 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+

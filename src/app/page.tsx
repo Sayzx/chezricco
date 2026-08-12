@@ -6,10 +6,11 @@ import Menu from "@/components/Menu";
 import Gallery from "@/components/Gallery";
 import Hours from "@/components/Hours";
 import Footer from "@/components/Footer";
+import StickyMobileBar from "@/components/StickyMobileBar";
 
 export default function Home() {
   return (
-    <>
+    <div className="pb-16 md:pb-0 min-h-screen">
       <Navbar />
       <Hero />
       <Marquee />
@@ -18,6 +19,7 @@ export default function Home() {
       <Gallery />
       <Hours />
       <Footer />
-    </>
+      <StickyMobileBar />
+    </div>
   );
 }

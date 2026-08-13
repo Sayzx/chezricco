@@ -58,7 +58,19 @@ export default function MentionsLegales() {
                 </a>
               </p>
               <p>
-                <strong>Numéro SIRET / Immatriculation :</strong> En cours d&apos;immatriculation / Disponible sur demande à l&apos;établissement.
+                <strong>Forme juridique :</strong> SAS, société par actions simplifiée
+              </p>
+              <p>
+                <strong>SIREN :</strong> 101 340 057
+              </p>
+              <p>
+                <strong>SIRET (siège) :</strong> 101 340 057 00013
+              </p>
+              <p>
+                <strong>N° de TVA intracommunautaire :</strong> FR67101340057
+              </p>
+              <p>
+                <strong>RCS :</strong> Inscrit
               </p>
               <p>
                 <strong>Directeur de la publication :</strong> Le responsable de l&apos;établissement Chez Ricco.
@@ -128,7 +140,7 @@ export default function MentionsLegales() {
                 <a href="tel:0469361985" className="font-bold underline hover:text-red">
                   04 69 36 19 85
                 </a>{" "}
-                ou directement sur place au 6 rue des Petits Commerçants, 66510 Saint-Hippolyte.
+                ou directement sur place au 6 rue des Commerçants, 66510 Saint-Hippolyte.
               </p>
             </div>
           </section>
@@ -144,7 +156,7 @@ export default function MentionsLegales() {
               </p>
               <p>
                 Les commandes s&apos;effectuent par téléphone au{" "}
-                <strong className="text-red">04 69 36 19 85</strong> ou directement sur place. Le paiement s&apos;effectue au moment du retrait au snack (6 rue des Petits Commerçants, 66510 Saint-Hippolyte).
+                <strong className="text-red">04 69 36 19 85</strong> ou directement sur place. Le paiement s&apos;effectue au moment du retrait au snack (6 rue des Commerçants, 66510 Saint-Hippolyte).
               </p>
             </div>
           </section>

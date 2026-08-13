@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Pacifico, Work_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const anton = Anton({
@@ -141,7 +142,7 @@ const jsonLdData = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "6 rue des Petits Commerçants",
+    streetAddress: "6 rue des Commerçants",
     addressLocality: "Saint-Hippolyte",
     postalCode: "66510",
     addressRegion: "Pyrénées-Orientales",
@@ -204,7 +205,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script id="clarity-analytics" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "y1w84g7cx0");`}
+        </Script>
+      </body>
     </html>
   );
 }

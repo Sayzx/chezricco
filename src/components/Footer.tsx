@@ -17,7 +17,7 @@ export default function Footer() {
         <p className="font-body text-sm text-cream/80 max-w-md">
           Point Chaud · Pizza au feu de tradition · Sandwich · Snack · Baguettes & Viennoiseries
           <br />
-          6 rue des Petits Commerçants, 66510 Saint-Hippolyte
+          6 rue des Commerçants, 66510 Saint-Hippolyte
         </p>
         <a
           href="tel:0469361985"

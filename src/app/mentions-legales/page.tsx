@@ -49,7 +49,7 @@ export default function MentionsLegales() {
                 <strong>Activité :</strong> Restauration rapide, snack, point chaud (pizzas, sandwichs, viennoiseries)
               </p>
               <p>
-                <strong>Adresse de l&apos;établissement :</strong> 6 rue des Petits Commerçants, 66510 Saint-Hippolyte, France
+                <strong>Adresse de l&apos;établissement :</strong> 6 rue des Commerçants, 66510 Saint-Hippolyte, France
               </p>
               <p>
                 <strong>Téléphone :</strong>{" "}

@@ -46,7 +46,7 @@ export default function Hours() {
                     Adresse
                   </strong>
                   <p className="font-body text-base text-white font-bold leading-snug mt-0.5">
-                    6 rue des Petits Commerçants
+                    6 rue des Commerçants
                   </p>
                   <p className="text-sm text-cream/90 font-body">66510 Saint-Hippolyte</p>
                 </div>

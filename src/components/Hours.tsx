@@ -95,7 +95,7 @@ export default function Hours() {
                 📞 Appeler pour commander
               </a>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=6+rue+des+Petits+Commer%C3%A7ants+66510+Saint-Hippolyte"
+                href="https://www.google.com/maps/search/?api=1&query=6+rue+des+Commer%C3%A7ants+66510+Saint-Hippolyte"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border-2 border-cream bg-black/60 px-6 py-3.5 font-body text-base text-cream font-bold shadow-[4px_4px_0_#1c1410] hover:bg-cream hover:text-black transition-all"

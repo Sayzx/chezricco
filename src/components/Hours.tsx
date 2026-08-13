@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import OpenStatus from "./OpenStatus";
 
 const schedule = [
-  { dayIndex: 1, day: "Lundi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
+  { dayIndex: 1, day: "Lundi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
   { dayIndex: 2, day: "Mardi", hours: "Fermé" },
-  { dayIndex: 3, day: "Mercredi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
-  { dayIndex: 4, day: "Jeudi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
+  { dayIndex: 3, day: "Mercredi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
+  { dayIndex: 4, day: "Jeudi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
   { dayIndex: 5, day: "Vendredi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
   { dayIndex: 6, day: "Samedi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
-  { dayIndex: 0, day: "Dimanche", hours: "7h00 – 14h00 · 17h30 – 21h30" },
+  { dayIndex: 0, day: "Dimanche", hours: "7h00 – 14h00 · 17h30 – 21h00" },
 ];
 
 export default function Hours() {

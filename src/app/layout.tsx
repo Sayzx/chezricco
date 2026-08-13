@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Chez Ricco Saint-Hippolyte",
   },
   description:
-    "Chez Ricco à Saint-Hippolyte (66510) : pizzas au feu de bois, tacos, kebabs, paninis & point chaud (baguettes & viennoiseries chaudes dès 7h). Sur place et à emporter. Tél: 04 69 36 19 85. 6 rue des Petits Commerçants.",
+    "Chez Ricco à Saint-Hippolyte (66510) : pizzas au feu de bois, tacos, kebabs, paninis & point chaud (baguettes & viennoiseries chaudes dès 7h). Sur place et à emporter. Tél: 04 69 36 19 85. 6 rue des Commerçants.",
   keywords: [
     "Chez Ricco",
     "Snack Saint-Hippolyte",

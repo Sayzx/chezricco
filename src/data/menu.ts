@@ -79,6 +79,7 @@ export const pointChaud: MenuItem[] = [
   { name: "Pain au chocolat", desc: "Pur beurre", price: "" },
   { name: "Chausson aux pommes", desc: "Pur beurre", price: "" },
   { name: "Baguette", desc: "Tradition", price: "" },
+  { name: "Baguette Céréales", desc: "Baguette Céréales", price: "" },
 ];
 
 export const petitsPlaisirs: MenuItem[] = [

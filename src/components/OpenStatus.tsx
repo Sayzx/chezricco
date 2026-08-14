@@ -1,41 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { DaySchedule } from "@/lib/store";
 
-export function getOpenStatusInfo() {
+function computeStatus(schedule: DaySchedule[]): { isOpen: boolean; text: string } {
   const now = new Date();
-  const day = now.getDay();
+  const today = schedule.find((d) => d.dayIndex === now.getDay());
+  if (!today || today.closed) return { isOpen: false, text: "Fermé" };
+
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const isOpen = today.ranges.some((r) => {
+    const [oh, om] = r.open.split(":").map(Number);
+    const [ch, cm] = r.close.split(":").map(Number);
+    const openMinutes = oh * 60 + om;
+    const closeMinutes = ch * 60 + cm;
+    return currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+  });
 
-  if (day === 2) {
-    return { isOpen: false, text: "Fermé" };
-  }
-
-  const morningStart = 7 * 60;
-  const morningEnd = 14 * 60;
-  const eveningStart = 17 * 60 + 30;
-  const eveningEnd = 21 * 60 + 30;
-
-  if (
-    (currentMinutes >= morningStart && currentMinutes < morningEnd) ||
-    (currentMinutes >= eveningStart && currentMinutes < eveningEnd)
-  ) {
-    return { isOpen: true, text: "Ouvert" };
-  }
-
-  return { isOpen: false, text: "Fermé" };
+  return isOpen ? { isOpen: true, text: "Ouvert" } : { isOpen: false, text: "Fermé" };
 }
 
 export default function OpenStatus({ className = "" }: { className?: string }) {
+  const [schedule, setSchedule] = useState<DaySchedule[] | null>(null);
   const [status, setStatus] = useState<{ isOpen: boolean; text: string } | null>(null);
 
   useEffect(() => {
-    setStatus(getOpenStatusInfo());
-    const interval = setInterval(() => {
-      setStatus(getOpenStatusInfo());
-    }, 60000);
-    return () => clearInterval(interval);
+    fetch("/api/hours")
+      .then((r) => r.json())
+      .then((d) => setSchedule(d.schedule))
+      .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!schedule) return;
+    setStatus(computeStatus(schedule));
+    const interval = setInterval(() => setStatus(computeStatus(schedule)), 60000);
+    return () => clearInterval(interval);
+  }, [schedule]);
 
   if (!status) return null;
 

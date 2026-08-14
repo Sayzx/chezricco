@@ -2,19 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import type { GalleryPhoto } from "@/lib/store";
 
-const photos = [
-  { src: "/images/logo.jpg", alt: "Logo officiel Chez Ricco — Van Food-Truck vintage" },
-  { src: "/images/storefront.jpg", alt: "Devanture et terrasse du snack Chez Ricco" },
-  { src: "/images/poster-hero.jpg", alt: "Spécialités pizzas, paninis, cafés & viennoiseries" },
-  { src: "/images/poster-food.jpg", alt: "Pizzas au feu de bois, kebabs et tacos généreux" },
-  { src: "/images/poster-viennoiseries.jpg", alt: "Point Chaud : Croissants, pains & baguettes chaudes" },
-  { src: "/images/menu-card-pizzas.jpg", alt: "Carte physique des pizzas au feu de tradition" },
-  { src: "/images/menu-card-sandwiches.jpg", alt: "Carte physique des sandwichs & formules" },
-];
-
-export default function Gallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; alt: string } | null>(null);
+export default function Gallery({ photos }: { photos: GalleryPhoto[] }) {
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 
   return (
     <section id="galerie" className="mx-auto max-w-6xl px-5 py-16">

@@ -2,18 +2,20 @@
 
 import { useEffect, useState } from "react";
 import OpenStatus from "./OpenStatus";
+import type { DaySchedule } from "@/lib/store";
 
-const schedule = [
-  { dayIndex: 1, day: "Lundi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
-  { dayIndex: 2, day: "Mardi", hours: "Fermé" },
-  { dayIndex: 3, day: "Mercredi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
-  { dayIndex: 4, day: "Jeudi", hours: "7h00 – 14h00 · 17h30 – 21h00" },
-  { dayIndex: 5, day: "Vendredi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
-  { dayIndex: 6, day: "Samedi", hours: "7h00 – 14h00 · 17h30 – 21h30" },
-  { dayIndex: 0, day: "Dimanche", hours: "7h00 – 14h00 · 17h30 – 21h00" },
-];
+function formatTime(t: string): string {
+  const [h, m] = t.split(":");
+  const hour = String(Number(h));
+  return m === "00" ? `${hour}h00` : `${hour}h${m}`;
+}
 
-export default function Hours() {
+function formatDay(d: DaySchedule): string {
+  if (d.closed || d.ranges.length === 0) return "Fermé";
+  return d.ranges.map((r) => `${formatTime(r.open)} – ${formatTime(r.close)}`).join(" · ");
+}
+
+export default function Hours({ schedule }: { schedule: DaySchedule[] }) {
   const [currentDay, setCurrentDay] = useState<number | null>(null);
 
   useEffect(() => {
@@ -121,6 +123,7 @@ export default function Hours() {
               <ul className="space-y-2">
                 {schedule.map((s) => {
                   const isToday = currentDay === s.dayIndex;
+                  const hours = formatDay(s);
                   return (
                     <li
                       key={s.day}
@@ -140,12 +143,12 @@ export default function Hours() {
                       </span>
                       <span
                         className={
-                          s.hours === "Fermé"
+                          hours === "Fermé"
                             ? "font-body text-red font-bold"
                             : "font-body text-black/90 font-medium"
                         }
                       >
-                        {s.hours}
+                        {hours}
                       </span>
                     </li>
                   );

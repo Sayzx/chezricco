@@ -1,0 +1,442 @@
+{
+  "menu": {
+    "categories": [
+      {
+        "id": "pizzas",
+        "label": "🍕 Pizzas",
+        "note": "20 recettes au feu de tradition",
+        "items": [
+          {
+            "id": "margarita",
+            "name": "Margarita",
+            "desc": "Tomate, fromage",
+            "price": "9,90€"
+          },
+          {
+            "id": "bambi",
+            "name": "Bambi",
+            "desc": "Tomate, fromage, jambon",
+            "price": "10,90€"
+          },
+          {
+            "id": "reine",
+            "name": "Reine",
+            "desc": "Tomate, fromage, jambon, champignons",
+            "price": "11,90€"
+          },
+          {
+            "id": "diablo",
+            "name": "Diablo",
+            "desc": "Tomate, fromage, chorizo",
+            "price": "11,90€"
+          },
+          {
+            "id": "capra-del-miel",
+            "name": "Capra del miel",
+            "desc": "Crème aux herbes, fromages, chèvre, miel",
+            "price": "11,90€"
+          },
+          {
+            "id": "sicilienne",
+            "name": "Sicilienne",
+            "desc": "Tomate, fromage, anchois, oignons, poivrons",
+            "price": "11,90€"
+          },
+          {
+            "id": "kebab",
+            "name": "Kebab",
+            "desc": "Tomate, fromage, kebab, oignons, pita",
+            "price": "12,90€"
+          },
+          {
+            "id": "calzone",
+            "name": "Calzone",
+            "desc": "Tomate, fromage, jambon, œuf, champignons",
+            "price": "12,90€"
+          },
+          {
+            "id": "4-saisons",
+            "name": "4 saisons",
+            "desc": "Tomate, fromage, aubergines, champignons, oignons, poivrons",
+            "price": "12,90€"
+          },
+          {
+            "id": "oriental",
+            "name": "Oriental",
+            "desc": "Tomate, fromage, merguez, poivrons",
+            "price": "12,90€"
+          },
+          {
+            "id": "cheese",
+            "name": "Cheese",
+            "desc": "Tomate, fromage, viande hachée, oignons, cheddar, oignons frits",
+            "price": "13,90€"
+          },
+          {
+            "id": "farmer-barbecue",
+            "name": "Farmer barbecue",
+            "desc": "Tomate, fromage, viande de bœuf, poulet, oignon, sauce BBQ, oignons frits",
+            "price": "13,90€"
+          },
+          {
+            "id": "3-fromages",
+            "name": "3 fromages",
+            "desc": "Crème aux herbes, fromage, roquefort, chèvre",
+            "price": "13,90€"
+          },
+          {
+            "id": "poulet-curry",
+            "name": "Poulet curry",
+            "desc": "Sauce curry, fromage, poulet, oignons, poivrons",
+            "price": "13,90€"
+          },
+          {
+            "id": "savoyarde",
+            "name": "Savoyarde",
+            "desc": "Crème aux herbes, fromage, oignons, patates, lardons, tartiflette",
+            "price": "13,90€"
+          },
+          {
+            "id": "tagliatelles",
+            "name": "Tagliatelles",
+            "desc": "Crème aux herbes, fromage, tagliatelle, œuf, lardons, oignons",
+            "price": "13,90€"
+          },
+          {
+            "id": "tagliatelles-saumon",
+            "name": "Tagliatelles saumon",
+            "desc": "Crème aux herbes, fromage, tagliatelle, œuf, saumon",
+            "price": "13,90€"
+          },
+          {
+            "id": "paysanne",
+            "name": "Paysanne",
+            "desc": "Crème aux herbes, patates, poulet, lardons, champignons",
+            "price": "13,90€"
+          },
+          {
+            "id": "pecheur",
+            "name": "Pêcheur",
+            "desc": "Tomate, fromage, cocktail de fruits de mer",
+            "price": "13,90€"
+          },
+          {
+            "id": "saumon",
+            "name": "Saumon",
+            "desc": "Crème aux herbes, fromage, saumon",
+            "price": "14,90€"
+          }
+        ]
+      },
+      {
+        "id": "paninis",
+        "label": "🥪 Paninis",
+        "note": "6,90€ · formule +3,50€ (frites + boisson)",
+        "items": [
+          {
+            "id": "jerry",
+            "name": "Jerry",
+            "desc": "Fromage, jambon",
+            "price": "6,90€"
+          },
+          {
+            "id": "bouba",
+            "name": "Bouba",
+            "desc": "Fromage, jambon, chèvre",
+            "price": "6,90€"
+          },
+          {
+            "id": "chorizo",
+            "name": "Chorizo",
+            "desc": "Fromage, oignons, tomate, chorizo",
+            "price": "6,90€"
+          },
+          {
+            "id": "chevre-miel",
+            "name": "Chèvre miel",
+            "desc": "Fromage, chèvre, miel",
+            "price": "6,90€"
+          },
+          {
+            "id": "3-fromages",
+            "name": "3 fromages",
+            "desc": "Fromage, roquefort, chèvre",
+            "price": "6,90€"
+          },
+          {
+            "id": "kebab",
+            "name": "Kebab",
+            "desc": "Fromage, oignons, tomate, kebab",
+            "price": "6,90€"
+          },
+          {
+            "id": "steak",
+            "name": "Steak",
+            "desc": "Fromage, steak haché, tomates",
+            "price": "6,90€"
+          }
+        ]
+      },
+      {
+        "id": "kebab",
+        "label": "🥙 Kebab",
+        "note": "7,90€ · formule +1,50€ boisson",
+        "items": [
+          {
+            "id": "kebab",
+            "name": "Kebab",
+            "desc": "Pain kebab, pitta, salade, tomate, oignons, kebab, frites",
+            "price": "7,90€"
+          }
+        ]
+      },
+      {
+        "id": "americain",
+        "label": "🍔 Américain",
+        "note": "8,90€ · formule +1,50€ boisson",
+        "items": [
+          {
+            "id": "steak",
+            "name": "Américain steak",
+            "desc": "Salade, tomate, oignons, steak, frites",
+            "price": "8,90€"
+          },
+          {
+            "id": "poulet",
+            "name": "Américain poulet",
+            "desc": "Salade, tomate, oignons, poulet, frites",
+            "price": "8,90€"
+          },
+          {
+            "id": "kebab",
+            "name": "Américain kebab",
+            "desc": "Salade, tomate, oignons, kebab, frites",
+            "price": "8,90€"
+          }
+        ]
+      },
+      {
+        "id": "tacos",
+        "label": "🌮 Tacos",
+        "note": "Formule +1,50€ boisson · garnitures au choix : kebab, cordon bleu, nuggets, tender's, steak · sauce fromagère + frites incluses",
+        "items": [
+          {
+            "id": "simple",
+            "name": "Tacos simple",
+            "price": "6,90€"
+          },
+          {
+            "id": "double",
+            "name": "Tacos double",
+            "price": "8,90€"
+          }
+        ]
+      },
+      {
+        "id": "point-chaud",
+        "label": "🥐 Point Chaud",
+        "note": "Baguettes tradition & viennoiseries pur beurre cuites chaudes dès 7h00",
+        "items": [
+          {
+            "id": "croissant",
+            "name": "Croissant",
+            "desc": "Pur beurre",
+            "price": ""
+          },
+          {
+            "id": "pain-au-chocolat",
+            "name": "Pain au chocolat",
+            "desc": "Pur beurre",
+            "price": ""
+          },
+          {
+            "id": "chausson-aux-pommes",
+            "name": "Chausson aux pommes",
+            "desc": "Pur beurre",
+            "price": ""
+          },
+          {
+            "id": "baguette",
+            "name": "Baguette",
+            "desc": "Tradition",
+            "price": ""
+          },
+          {
+            "id": "baguette-cereales",
+            "name": "Baguette Céréales",
+            "desc": "Baguette Céréales",
+            "price": ""
+          }
+        ]
+      },
+      {
+        "id": "petits-plaisirs",
+        "label": "🍟 Petits Plaisirs",
+        "items": [
+          {
+            "id": "petite-frites",
+            "name": "Petite frites",
+            "price": "2€"
+          },
+          {
+            "id": "grande-frites",
+            "name": "Grande frites",
+            "price": "4€"
+          },
+          {
+            "id": "nuggets-x5",
+            "name": "Nuggets x5",
+            "price": "4,90€"
+          },
+          {
+            "id": "nuggets-x10",
+            "name": "Nuggets x10",
+            "price": "8,90€"
+          }
+        ]
+      },
+      {
+        "id": "menu-enfant",
+        "label": "🧒 Menu Enfant",
+        "items": [
+          {
+            "id": "menu-enfant",
+            "name": "Menu enfant",
+            "desc": "1 cheese ou 5 nuggets + 1 petite frites + compote + boisson",
+            "price": "6,90€"
+          }
+        ]
+      }
+    ]
+  },
+  "hours": {
+    "schedule": [
+      {
+        "dayIndex": 1,
+        "day": "Lundi",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:00"
+          }
+        ]
+      },
+      {
+        "dayIndex": 2,
+        "day": "Mardi",
+        "closed": true,
+        "ranges": []
+      },
+      {
+        "dayIndex": 3,
+        "day": "Mercredi",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:00"
+          }
+        ]
+      },
+      {
+        "dayIndex": 4,
+        "day": "Jeudi",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:00"
+          }
+        ]
+      },
+      {
+        "dayIndex": 5,
+        "day": "Vendredi",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      {
+        "dayIndex": 6,
+        "day": "Samedi",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      {
+        "dayIndex": 0,
+        "day": "Dimanche",
+        "closed": false,
+        "ranges": [
+          {
+            "open": "07:00",
+            "close": "14:00"
+          },
+          {
+            "open": "17:30",
+            "close": "21:00"
+          }
+        ]
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/images/logo.jpg",
+      "alt": "Logo officiel Chez Ricco — Van Food-Truck vintage"
+    },
+    {
+      "src": "/images/storefront.jpg",
+      "alt": "Devanture et terrasse du snack Chez Ricco"
+    },
+    {
+      "src": "/images/poster-hero.jpg",
+      "alt": "Spécialités pizzas, paninis, cafés & viennoiseries"
+    },
+    {
+      "src": "/images/poster-food.jpg",
+      "alt": "Pizzas au feu de bois, kebabs et tacos généreux"
+    },
+    {
+      "src": "/images/poster-viennoiseries.jpg",
+      "alt": "Point Chaud : Croissants, pains & baguettes chaudes"
+    },
+    {
+      "src": "/images/menu-card-pizzas.jpg",
+      "alt": "Carte physique des pizzas au feu de tradition"
+    },
+    {
+      "src": "/images/menu-card-sandwiches.jpg",
+      "alt": "Carte physique des sandwichs & formules"
+    }
+  ]
+}

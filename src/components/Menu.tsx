@@ -1,24 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import {
-  pizzas,
-  paninis,
-  otherSandwiches,
-  pointChaud,
-  petitsPlaisirs,
-  menuEnfant,
-} from "@/data/menu";
+import type { MenuCategory } from "@/lib/store";
 import MenuModal from "./MenuModal";
-
-const tabs = [
-  { id: "pizza", label: "🍕 Pizzas" },
-  { id: "sandwich", label: "🥖 Sandwichs & Tacos" },
-  { id: "chaud", label: "🥐 Point Chaud" },
-  { id: "plaisirs", label: "🍟 Petits plaisirs" },
-] as const;
-
-type TabId = (typeof tabs)[number]["id"];
 
 function TicketCard({
   name,
@@ -52,8 +36,8 @@ function TicketCard({
   );
 }
 
-export default function Menu() {
-  const [tab, setTab] = useState<TabId>("pizza");
+export default function Menu({ categories }: { categories: MenuCategory[] }) {
+  const [tab, setTab] = useState<string>(categories[0]?.id ?? "");
   const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalInitialTab, setModalInitialTab] = useState<"pizzas" | "sandwiches">("pizzas");
@@ -68,10 +52,7 @@ export default function Menu() {
     );
   };
 
-  const openPhotoMenu = (initial: "pizzas" | "sandwiches") => {
-    setModalInitialTab(initial);
-    setModalOpen(true);
-  };
+  const activeCategory = categories.find((c) => c.id === tab) ?? categories[0];
 
   return (
     <section id="carte" className="bg-black py-16 text-cream">
@@ -90,6 +71,27 @@ export default function Menu() {
             </a>{" "}
             pour commander !
           </p>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <button
+              onClick={() => {
+                setModalInitialTab("pizzas");
+                setModalOpen(true);
+              }}
+              className="rounded-full border-2 border-mustard/60 px-4 py-1.5 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
+            >
+              📜 Voir la carte pizzas en photo
+            </button>
+            <button
+              onClick={() => {
+                setModalInitialTab("sandwiches");
+                setModalOpen(true);
+              }}
+              className="rounded-full border-2 border-mustard/60 px-4 py-1.5 font-display text-xs text-mustard hover:bg-mustard hover:text-black transition-all"
+            >
+              📜 Voir la carte sandwichs en photo
+            </button>
+          </div>
         </div>
 
         {/* Search bar & Category Tabs */}
@@ -117,17 +119,17 @@ export default function Menu() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            {tabs.map((t) => (
+            {categories.map((c) => (
               <button
-                key={t.id}
-                onClick={() => setTab(t.id)}
+                key={c.id}
+                onClick={() => setTab(c.id)}
                 className={`rounded-full border-2 px-5 py-2 font-display text-sm tracking-wide transition-all ${
-                  tab === t.id
+                  tab === c.id
                     ? "border-mustard bg-mustard text-black font-bold shadow-[2px_2px_0_#ffce54]"
                     : "border-cream/40 text-cream/80 hover:border-mustard hover:text-mustard"
                 }`}
               >
-                {t.label}
+                {c.label}
               </button>
             ))}
           </div>
@@ -135,113 +137,26 @@ export default function Menu() {
 
         {/* Menu Board Container */}
         <div className="mt-10 rounded-xl border-4 border-mustard bg-cream p-5 text-black shadow-2xl sm:p-8">
-          {tab === "pizza" && (
+          {activeCategory && (
             <div>
-              <div className="mb-4 flex items-center justify-between border-b-2 border-black pb-3">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-3">
                 <span className="font-display text-lg text-red uppercase">
-                  Pizzas au choix · 20 recettes
+                  {activeCategory.label}
                 </span>
-                <span className="text-xs font-display bg-red/10 text-red px-3 py-1 rounded-full">
-                  De 9,90€ à 14,90€
-                </span>
-              </div>
-              <div className="grid gap-x-8 sm:grid-cols-2">
-                {pizzas.map((p) => (
-                  <TicketCard
-                    key={p.name}
-                    {...p}
-                    isMatch={isMatching(p.name, p.desc)}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {tab === "sandwich" && (
-            <div className="space-y-8">
-              {/* Paninis section */}
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-2">
-                  <h3 className="font-display text-xl text-red">
-                    Paninis Chauds · 6,90€
-                  </h3>
-                  <span className="rounded-full bg-mustard px-3 py-1 font-display text-xs text-black border border-black font-bold">
-                    🍟 Formule +3,50€ (Frites + Boisson)
+                {activeCategory.note && (
+                  <span className="text-xs font-display bg-red/10 text-red px-3 py-1 rounded-full">
+                    {activeCategory.note}
                   </span>
-                </div>
-                <div className="mt-3 grid gap-x-8 sm:grid-cols-2">
-                  {paninis.map((p) => (
-                    <TicketCard
-                      key={p.name}
-                      {...p}
-                      price="6,90€"
-                      isMatch={isMatching(p.name, p.desc)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Other sandwiches: Kebab, Américain, Tacos */}
-              {otherSandwiches.map((group) => (
-                <div key={group.id}>
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-black pb-2">
-                    <h3 className="font-display text-xl text-red">{group.title}</h3>
-                    {group.note && (
-                      <span className="rounded-full bg-mustard/30 px-3 py-1 font-display text-xs text-black border border-black/40">
-                        {group.note}
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-3 grid gap-x-8 sm:grid-cols-2">
-                    {group.items.map((it) => (
-                      <TicketCard
-                        key={it.name}
-                        {...it}
-                        isMatch={isMatching(it.name, it.desc)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-
-              {/* Menu Enfant */}
-              <div className="rounded-lg border-2 border-black bg-mustard-light/50 p-4 shadow-md">
-                <TicketCard
-                  {...menuEnfant}
-                  isMatch={isMatching(menuEnfant.name, menuEnfant.desc)}
-                />
-              </div>
-            </div>
-          )}
-
-          {tab === "chaud" && (
-            <div>
-              <p className="mb-6 text-center font-display text-xs tracking-wider text-black/70 bg-mustard/20 py-2 rounded-md border border-black/20">
-                🥖 BAGUETTES TRADITION & VIENNOISERIES PUR BEURRE CUITES CHAUDES DÈS 7H00
-              </p>
-              <div className="grid gap-x-8 sm:grid-cols-2">
-                {pointChaud.map((p) => (
-                  <TicketCard
-                    key={p.name}
-                    {...p}
-                    isMatch={isMatching(p.name, p.desc)}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {tab === "plaisirs" && (
-            <div>
-              <div className="mb-4 border-b-2 border-black pb-2">
-                <h3 className="font-display text-xl text-red">Accompagnements & Snacks</h3>
+                )}
               </div>
               <div className="grid gap-x-8 sm:grid-cols-2">
-                {petitsPlaisirs.map((p) => (
+                {activeCategory.items.map((it) => (
                   <TicketCard
-                    key={p.name}
-                    {...p}
-                    isMatch={isMatching(p.name, p.desc)}
+                    key={it.id}
+                    name={it.name}
+                    desc={it.desc}
+                    price={it.price}
+                    isMatch={isMatching(it.name, it.desc)}
                   />
                 ))}
               </div>
